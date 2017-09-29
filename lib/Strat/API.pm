@@ -102,10 +102,8 @@ ajax '/api/1/get_object' => sub {
     return JSON::to_json({
          success => JSON::true,
          result => {
-            status => ($data->[-1]->{status} eq 'ok' ? 'ok' : 'fail'),
+            status => 'ok',
             path => param('path'),
-            expire => $expire,
-            history => $data,
         }
     });
 };

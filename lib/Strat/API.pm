@@ -46,19 +46,9 @@ my $wordlist = '/usr/share/dict/words';
 
 get '/' => sub {
     return '
-      <div style="font-family:Arial; height:100%; padding:0; margin:30; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display: -webkit-flex; display: flex; align-items: flex-start; justify-content: center; flex-direction:column">
-        <h1>Submission to strategicdata/recruitment <a href="https://github.com/strategicdata/recruitment/wiki/Coding-task---BE">coding task</a></h1>
-        <b>Response API</b>
-        <ol type="1">
-          <li><a href="/wordfinder/dgo">Wordfinder API</a></li>
-          <li><a href="/ping">Ping</a></li>
-        </ol>
-        <b>For local installation</b>
-        <ol type="1">
-          <li>Download repo with `>git clone https://github.com/shotlom/strat-dat && cd strat-dat`</li>
-          <li>Ensure docker-compose is installed</li>
-          <li>Run `>docker-compose up`</li>
-        </ol>
+      <div style="font-family:Arial; height:100%; padding:0; margin:30; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display: -webkit-flex; display: flex; align-items: center; justify-content: center; flex-direction:column">
+        <h1>Submission to strategicdata/recruitment </h1>
+        <a href="https://github.com/strategicdata/recruitment/wiki/Coding-task---BE">coding task</a>
       </div>
     ';
 };

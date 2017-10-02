@@ -46,15 +46,14 @@ my $wordlist = '/usr/share/dict/words';
 
 get '/' => sub {
     return '
-      <div style="font-family:Arial; height:100%; padding:0; margin:0; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display: -webkit-flex; display: flex; align-items: center; justify-content: center;">
-        <h3>Submission to strategicdata/recruitment</h3>
-        <a href="https://github.com/strategicdata/recruitment/wiki/Coding-task---BE">Coding task</a>
-        <h3>Response API</h3>
+      <div style="font-family:Arial; height:100%; padding:0; margin:30; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display: -webkit-flex; display: flex; align-items: flex-start; justify-content: center; flex-direction:column">
+        <h1>Submission to strategicdata/recruitment <a href="https://github.com/strategicdata/recruitment/wiki/Coding-task---BE">coding task</a></h1>
+        <b>Response API</b>
         <ol type="1">
           <li><a href="/wordfinder/dgo">Wordfinder API</a></li>
           <li><a href="/ping">Ping</a></li>
         </ol>
-        <h3>For local installation</h3>
+        <b>For local installation</b>
         <ol type="1">
           <li>Download repo with `>git clone https://github.com/shotlom/strat-dat && cd strat-dat`</li>
           <li>Ensure docker-compose is installed</li>
@@ -78,116 +77,5 @@ get '/wordfinder/:input' => sub {
 };
 
 get '/ping' => sub {
-    return "<div style=\"font-family:Arial; height: 100%;    padding: 0;    margin: 0;    display: -webkit-box;    display: -moz-box;    display: -ms-flexbox;    display: -webkit-flex;    display: flex;    align-items: center;    justify-content: center;\">200 OK</div>";
-};
-
-
-get '/user/:name' => sub {
-    my $username = param('name');
-    return "Hello $username!";
-};
-
-
-=head2 /api/1/version
-
-Get API Version
-
-=cut
-
-ajax '/api/1/version' => sub {
-
-    content_type('application/json');
-
-    return JSON::to_json({
-        success => JSON::true,
-        result => {
-            version => '1.0.0',
-        },
-    });
-};
-
-
-=head2 /api/1/get_object
-=cut
-
-ajax '/api/1/get_object' => sub {
-
-    if (not defined param('path')) {
-        return JSON::to_json({
-             success => JSON::false,
-             error_message => "You must specify 'path'",
-        });
-    }
-
-    if (not is_path_valid(param('path'))) {
-        return JSON::to_json({
-             success => JSON::false,
-             error_message => sprintf("Incorrect value for 'path': '%s'", param('path')),
-        });
-    }
-
-    mark_expired();
-
-    content_type('application/json');
-
-    # my $expire = get_db()->get_one(
-    #     'select value from settings where path = ? and type = "expire"',
-    #     param('path'),
-    # );
-    #
-    # my $data = get_db()->get_data(
-    #     'select dt, status from history where path = ? order by dt',
-    #     param('path'),
-    # );
-    #
-    # if (@{$data} == 0) {
-    #     return JSON::to_json({
-    #          success => JSON::false,
-    #          error_message => sprintf("Parameter 'path' got unknown value '%s'", param('path')),
-    #     });
-    # }
-
-    return JSON::to_json({
-         success => JSON::true,
-         result => {
-            status => 'ok',
-            path => param('path'),
-        }
-    });
-};
-
-=head2 /api/1/get
-=cut
-
-ajax '/api/1/get' => sub {
-
-    mark_expired();
-
-    content_type('application/json');
-
-    return JSON::to_json({
-        success => JSON::true,
-        result => get_data(
-            path => param('path'),
-            type => 'get',
-        ),
-    });
-};
-
-=head2 /api/1/get_all
-=cut
-
-ajax '/api/1/get_all' => sub {
-
-    mark_expired();
-
-    content_type('application/json');
-
-    return JSON::to_json({
-        success => JSON::true,
-        result => get_data(
-            path => param('path'),
-            type => 'get_all',
-        ),
-    });
+    return "<div style=\"font-family:Arial; height: 100%;    padding: 0;    margin: 0;    display: -webkit-box;    display: -moz-box;    display: -ms-flexbox;    display: -webkit-flex;    display: flex;    align-items: center;    justify-content: center;\"><h1>200 OK</h1></div>";
 };

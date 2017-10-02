@@ -4,8 +4,8 @@ strat-dat:
   restart: always
   container_name: strat-dat
   volumes:
-    - .:/home/
-    - /home/
+    - .:/home/app/strat-dat
+    - /home/app/strat-dat/local
   ports:
     - 8080
   environment:
